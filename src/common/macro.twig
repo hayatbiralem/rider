@@ -1,0 +1,17 @@
+{% macro make_me_smile(name, slang) %}{{ slang }} {{ name }}{% endmacro %}
+{#
+    {% import _self as greet %}
+    {{ greet.make_me_smile('Twigjs', greetings) }}
+#}
+
+{% macro randomHexColor(mode) %}
+    {# mode can be "short or "long" #}
+    {% set mode = mode|default("long") %}
+    {% set part1 = random("ABCDEF123456789") ~ random("ABCDEF123456789") ~ random("ABCDEF123456789") %}
+    {% set part2 = random("ABCDEF123456789") ~ random("ABCDEF123456789") ~ random("ABCDEF123456789") %}
+    {% if mode == "long" %}
+        #{{ part1 ~ part2 }}
+    {% else %}
+        #{{ part1 }}
+    {% endif %}
+{% endmacro %}
