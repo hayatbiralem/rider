@@ -1,15 +1,31 @@
 {% extends "../common/layout.twig" %}
 {% import "../common/macro.twig" as macro %}
 
-{% block scripts %}
+{% block styles %}
+    <link rel="stylesheet" href="core.css">
 {% endblock %}
 
-{% block styles %}
-    {#<link rel="stylesheet" href="style.css">#}
+{% block scripts %}
+    <script src="core.js"></script>
 {% endblock %}
 
 {% block content %}
 
-    
+    <div class="items">
+        {% for i in 1..10 %}
+            <div class="item {{ i < 6 ? 'item--show item--show--' ~ i : '' }}">{{ i }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="controls">
+        <span class='arrow arrow--prev'>&larr;</span>
+        <span class='dots'>
+            <span class='dot dot--1 dot--current'>1</span>
+            <span class='dot dot--2'>2</span>
+            <span class='dot dot--3'>3</span>
+            <span class='dot dot--4'>4</span>
+        </span>
+        <span class='arrow arrow--next'>&rarr;</span>
+    </div>
 
 {% endblock %}

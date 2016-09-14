@@ -24,11 +24,6 @@ gulp.task('clean', function () {
     return del([ 'dist' ]);
 });
 
-gulp.task('html:watch', function () {
-    gulp.watch('app/**/*.twig', ['html']);
-    gulp.watch('app/json/**/*.json', ['html']);
-});
-
 gulp.task('html', function () {
 
     var data = json.get();
@@ -67,6 +62,9 @@ gulp.task('html', function () {
     });
 
     return streams.isEmpty() ? null : streams;
+});
+gulp.task('html:watch', function () {
+    gulp.watch('src/**/*.twig', ['html']);
 });
 
 // scss
