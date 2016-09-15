@@ -1,0 +1,130 @@
+.carousel {
+  &--animation--slide &__item--show--prev {
+    animation: slideFromLeft 600ms 10ms cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  }
+
+  &--animation--slide &__item--show--next {
+    animation: slideFromRight 600ms 10ms cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  }
+
+  &--animation--slide &__item--hide {
+    visibility: visible;
+  }
+
+  &--animation--slide &__item--hide--prev {
+    animation: slideToLeft 600ms 10ms cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  }
+
+  &--animation--slide &__item--hide--next {
+    animation: slideToRight 600ms 10ms cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  &--animation--slide.carousel--visible-count--2 &__item {
+    width: 50%;
+    float: left;
+  }
+
+  &--animation--slide.carousel--visible-count--2 &__item--show--2,
+  &--animation--slide.carousel--visible-count--2 &__item--hide--2 {
+    position: absolute;
+    left: 50%;
+  }
+
+  &--animation--slide.carousel--visible-count--2 &__item--show--prev {
+    animation-name: slideFromLeft2x;
+  }
+
+  &--animation--slide.carousel--visible-count--2 &__item--show--next {
+    animation-name: slideFromRight2x;
+  }
+
+  &--animation--slide.carousel--visible-count--2 &__item--hide--prev {
+    animation-name: slideToLeft2x;
+  }
+  &--animation--slide.carousel--visible-count--2 &__item--hide--next {
+    animation-name: slideToRight2x;
+  }
+}
+
+@keyframes slideToLeft {
+  99% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes slideToRight {
+  99% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+@keyframes slideFromLeft {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes slideFromRight {
+  0% {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+
+
+@keyframes slideToLeft2x {
+  99% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-200%, 0, 0);
+  }
+}
+
+@keyframes slideToRight2x {
+  99% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(200%, 0, 0);
+  }
+}
+
+@keyframes slideFromLeft2x {
+  0% {
+    transform: translate3d(-200%, 0, 0);
+  }
+}
+
+@keyframes slideFromRight2x {
+  0% {
+    transform: translate3d(200%, 0, 0);
+  }
+}

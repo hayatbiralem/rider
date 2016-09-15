@@ -10,6 +10,8 @@ var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var sourcemaps = require('gulp-sourcemaps');
 var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var pump = require('pump');
 var rename = require('gulp-rename');
 var merge = require('merge-stream');
 var fs = require('fs');
@@ -18,6 +20,7 @@ var json = {
         return JSON.parse(fs.readFileSync('src/json/db.json'));
     }
 };
+var modules = ['core', 'core-2', 'carousel'];
 
 // clean
 gulp.task('clean', function () {
@@ -30,7 +33,6 @@ gulp.task('html', function () {
     data.title = 'Rider';
 
     var streams = merge();
-    var modules = ['core', 'carousel'];
     modules.forEach(function(val, key){
         var stream = gulp.src([
             'src/'+val+'/index.twig'
@@ -70,7 +72,6 @@ gulp.task('html:watch', function () {
 // scss
 gulp.task('sass', function () {
     var streams = merge();
-    var modules = ['core', 'carousel'];
     modules.forEach(function(val, key){
         var stream = gulp.src([
             'src/'+val+'/styles.scss'
@@ -113,7 +114,6 @@ gulp.task('sass:watch', function () {
 // scripts
 gulp.task('javascript', function() {
     var streams = merge();
-    var modules = ['core', 'carousel'];
     modules.forEach(function(val, key){
         var stream = gulp.src([
             'src/'+val+'/scripts.js'
@@ -132,20 +132,36 @@ gulp.task('javascript', function() {
 
     return streams.isEmpty() ? null : streams;
 });
+gulp.task('compress', ['javascript'], function (cb) {
+    pump([
+            gulp.src(['dist/**/*.js', '!dist/**/*.min.js']),
+            rename(function (path) {
+                path.extname = ".min.js";
+                return path;
+            }),
+            uglify(),
+            gulp.dest('dist')
+        ],
+        cb
+    );
+});
 gulp.task('javascript:watch', function () {
-    gulp.watch('src/**/*.js', ['javascript']);
+    gulp.watch('src/**/*.js', ['compress']);
 });
 
 // connect
 gulp.task('connect', function() {
     connect.server({
         root: 'dist',
-        livereload: true
+        livereload: false
     });
 });
 
 // watch
 gulp.task('watch', ['html:watch', 'sass:watch', 'javascript:watch']);
 
+// build tasks
+gulp.task('build', ['html', 'sass', 'javascript', 'compress']);
+
 // default tasks
-gulp.task('default', ['connect', 'html', 'sass', 'javascript', 'watch']);
+gulp.task('default', ['build', 'connect', 'watch']);

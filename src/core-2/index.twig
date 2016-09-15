@@ -1,0 +1,129 @@
+{% extends "../common/layout.twig" %}
+{% import "../common/macro.twig" as macro %}
+
+{% block styles %}
+    <link rel="stylesheet" href="core-2.css">
+{% endblock %}
+
+{% block scripts %}
+    <script src="core.js"></script>
+    <script>
+        var rider = new Rider(
+                document.querySelector('.carousel'),
+                {
+                    blockClass: 'carousel',
+                    itemClass: 'carousel__item',
+                    visibleCount: 2,
+                    reverseHideDirection: true,
+                    onStart: function(){
+                        console.log('start');
+                    },
+                    onRender: function(){
+                        console.log('render');
+                    },
+                    onEnd: function(){
+                        console.log('end');
+                    }
+                }
+        );
+
+        document.querySelector('.carousel__arrow--prev').addEventListener("click", function(e) {
+            rider.prev();
+        });
+
+        document.querySelector('.carousel__arrow--next').addEventListener("click", function(e) {
+            rider.next();
+        });
+
+        var dots = Array.prototype.slice.call(document.querySelectorAll('.carousel__dot'));
+        dots.forEach(function (el, index) {
+            el.addEventListener('click', function() {
+                rider.slide(index + 1);
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class='carousel carousel--animation--slide'>
+        <div class='carousel__inner'>
+            <div class='carousel__item carousel__item--1'>
+                <div class='carousel__figure'>
+                    <div class='carousel__image carousel__image--withBg' style="background-image: url('https://unsplash.it/800/300.jpg?image=1')">
+                        Image alt text (for seo)
+                    </div>
+                </div>
+                <div class='carousel__content'>
+                    <h3>Title 1!</h3>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+            </div>
+            <div class='carousel__item carousel__item--2'>
+                <div class='carousel__figure'>
+                    <div class='carousel__image carousel__image--withBg' style="background-image: url('https://unsplash.it/800/300.jpg?image=2')">
+                        Image alt text (for seo)
+                    </div>
+                </div>
+                <div class='carousel__content'>
+                    <h3>Title 2!</h3>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+            </div>
+            <div class='carousel__item carousel__item--3'>
+                <div class='carousel__figure'>
+                    <div class='carousel__image carousel__image--withBg' style="background-image: url('https://unsplash.it/800/300.jpg?image=3')">
+                        Image alt text (for seo)
+                    </div>
+                </div>
+                <div class='carousel__content'>
+                    <h3>Title 3!</h3>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+            </div>
+            <div class='carousel__item carousel__item--4'>
+                <div class='carousel__figure'>
+                    <div class='carousel__image carousel__image--withBg' style="background-image: url('https://unsplash.it/800/300.jpg?image=4')">
+                        Image alt text (for seo)
+                    </div>
+                </div>
+                <div class='carousel__content'>
+                    <h3>Title 4!</h3>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+            </div>
+            <div class='carousel__item carousel__item--5'>
+                <div class='carousel__figure'>
+                    <div class='carousel__image carousel__image--withBg' style="background-image: url('https://unsplash.it/800/300.jpg?image=5')">
+                        Image alt text (for seo)
+                    </div>
+                </div>
+                <div class='carousel__content'>
+                    <h3>Title 5!</h3>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+            </div>
+            <div class='carousel__item carousel__item--6'>
+                <div class='carousel__figure'>
+                    <div class='carousel__image carousel__image--withBg' style="background-image: url('https://unsplash.it/800/300.jpg?image=6')">
+                        Image alt text (for seo)
+                    </div>
+                </div>
+                <div class='carousel__content'>
+                    <h3>Title 6!</h3>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class='carousel__arrow carousel__arrow--prev'>&larr;</div>
+        <div class='carousel__dots'>
+            <div class='carousel__dot carousel__dot--1 carousel__dot--current'>1</div>
+            <div class='carousel__dot carousel__dot--2'>2</div>
+            <div class='carousel__dot carousel__dot--3'>3</div>
+            <div class='carousel__dot carousel__dot--4'>4</div>
+            <div class='carousel__dot carousel__dot--5'>5</div>
+            <div class='carousel__dot carousel__dot--5'>6</div>
+        </div>
+        <div class='carousel__arrow carousel__arrow--next'>&rarr;</div>
+    </div>
+{% endblock %}

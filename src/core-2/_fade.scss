@@ -1,0 +1,29 @@
+.carousel {
+  &--animation--fade &__item--hide {
+    visibility: visible;
+    animation: fadeOut 450ms cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  }
+
+  &--animation--fade &__item--hide { z-index: 2; }
+  &--animation--fade &__item--show { z-index: 1; }
+
+  &--animation--fade.carousel--visible-count--2 &__item {
+    width: 50%;
+  }
+
+  &--animation--fade.carousel--visible-count--2 &__item--show--2 {
+    position: absolute;
+    left: 50%;
+  }
+
+  &--animation--fade.carousel--visible-count--2 &__item--hide--2 {
+    left: 50%;
+  }
+}
+
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

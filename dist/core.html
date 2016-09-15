@@ -60,6 +60,37 @@
     <!-- // .wrapper -->
 
     <script src="core.js"></script>
+    <script>
+        var rider = new Rider(
+            document.querySelector('.items'), {
+                visibleCount: function() {
+                    // return 1;
+                    var bodyWidth = document.body.offsetWidth;
+                    var count = 5;
+                    if (bodyWidth < 1200) count = 4;
+                    if (bodyWidth < 992) count = 3;
+                    if (bodyWidth < 768) count = 2;
+                    if (bodyWidth < 480) count = 1;
+                    return count;
+                }
+            }
+        );
+
+        document.querySelector('.arrow--prev').addEventListener("click", function(e) {
+            rider.prev();
+        });
+
+        document.querySelector('.arrow--next').addEventListener("click", function(e) {
+            rider.next();
+        });
+
+        var dots = Array.prototype.slice.call(document.querySelectorAll('.dot'));
+        dots.forEach(function(el, index) {
+            el.addEventListener('click', function() {
+                rider.slide(index + 1);
+            });
+        });
+    </script>
 
 </body>
 
