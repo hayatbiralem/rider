@@ -13,18 +13,8 @@
                 {
                     blockClass: 'carousel',
                     itemClass: 'carousel__item',
-                    visibleCount: 1,
+                    visibleCount: 2,
                     reverseHideDirection: true
-//                    ,
-//                    onStart: function(){
-//                        console.log('start');
-//                    },
-//                    onRender: function(){
-//                        console.log('render');
-//                    },
-//                    onEnd: function(){
-//                        console.log('end');
-//                    }
                 }
         );
 
@@ -60,7 +50,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class='carousel carousel--animation--slide'>
+    <div class='carousel carousel--animation--fade'>
         <div class='carousel__inner'>
             <div class='carousel__item carousel__item--1'>
                 <div class='carousel__figure'>
