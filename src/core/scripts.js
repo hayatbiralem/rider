@@ -110,6 +110,14 @@
                     return animations[t];
                 }
             }
+        },
+
+        // Source: http://stackoverflow.com/a/2970667/1227926
+        camelize: function(str) {
+            return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function(match, index) {
+                if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
+                return index == 0 ? match.toLowerCase() : match.toUpperCase();
+            });
         }
     };
 
@@ -260,6 +268,8 @@
             reverseHideDirection: false
         }, options || {});
 
+        this.events = {};
+
         this.element = element;
         this.items = helper.$( helper.format('.{0}', this.options.itemClass), element );
         this.items.forEach(function(item, index){
@@ -284,6 +294,7 @@
     };
 
     Rider.prototype.render = function(outItems, nextItems, direction) {
+        var that = this;
         this.calculateValues();
         direction = direction || 'next';
         nextItems = nextItems || this.visibleItems;
@@ -303,13 +314,47 @@
             visible: this.visibleCount
         }));
 
-        this.runCallback('onRender');
+        setTimeout(function(){
+            that.onRender();
+        }, 0);
     };
 
-    Rider.prototype.runCallback = function (eventKey) {
+    Rider.prototype.runCallback = function (eventName) {
+        var eventKey = helper.camelize('on ' + eventName);
         if( helper.isFunction(this.options[eventKey]) ) {
             this.options[eventKey].call(this);
         }
+
+        this.element.dispatchEvent( this.getCustomEvent(eventName) );
+    };
+
+    Rider.prototype.on = function (eventName, callback) {
+        this.element.addEventListener(eventName, callback, false);
+    };
+
+    Rider.prototype.off = function (eventName, callback) {
+        this.element.removeEventListener(eventName, callback, false);
+    };
+
+    Rider.prototype.setCustomEvent = function (eventName) {
+        var that = this;
+        this.events[eventName] = new CustomEvent(eventName, {
+            detail: {
+                rider: that
+            },
+            bubbles: true,
+            cancelable: true
+        });
+    };
+
+    Rider.prototype.getCustomEvent = function (eventName) {
+        if(eventName in this.events) {
+            this.events[eventName].detail.rider = this;
+        } else {
+            this.setCustomEvent(eventName);
+        }
+
+        return this.events[eventName];
     };
 
     Rider.prototype.show = function (items, direction) {
@@ -347,14 +392,18 @@
         }
     };
 
+    Rider.prototype.onRender = function () {
+        this.runCallback('render');
+    };
+
     Rider.prototype.onStart = function () {
         this.sliding = true;
-        this.runCallback('onStart');
+        this.runCallback('start');
     };
 
     Rider.prototype.onEnd = function () {
         this.sliding = false;
-        this.runCallback('onEnd');
+        this.runCallback('end');
     };
 
     Rider.prototype.calculateValues = function () {

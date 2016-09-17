@@ -14,16 +14,17 @@
                     blockClass: 'carousel',
                     itemClass: 'carousel__item',
                     visibleCount: 1,
-                    reverseHideDirection: true,
-                    onStart: function(){
-                        console.log('start');
-                    },
-                    onRender: function(){
-                        console.log('render');
-                    },
-                    onEnd: function(){
-                        console.log('end');
-                    }
+                    reverseHideDirection: true
+//                    ,
+//                    onStart: function(){
+//                        console.log('start');
+//                    },
+//                    onRender: function(){
+//                        console.log('render');
+//                    },
+//                    onEnd: function(){
+//                        console.log('end');
+//                    }
                 }
         );
 
@@ -41,6 +42,20 @@
                 rider.slide(index + 1);
             });
         });
+
+        rider.on('start', function(event){
+            console.log('start');
+        });
+
+        rider.on('render', function(event){
+            console.log('render');
+        });
+
+        rider.on('end', function(event){
+            console.log('end');
+        });
+
+
     </script>
 {% endblock %}
 

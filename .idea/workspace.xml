@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="658b4176-1576-4654-8585-b5b96c50df98" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/core-2.html" afterPath="$PROJECT_DIR$/dist/core-2.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/core.js" afterPath="$PROJECT_DIR$/dist/core.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/core.min.js" afterPath="$PROJECT_DIR$/dist/core.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/core-2/index.twig" afterPath="$PROJECT_DIR$/src/core-2/index.twig" />
@@ -27,52 +28,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/core-2/index.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+            <state relative-caret-position="680">
+              <caret line="49" column="43" selection-start-line="49" selection-start-column="43" selection-end-line="49" selection-end-column="43" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_core.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/core-2/_core.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="38" column="47" selection-start-line="38" selection-start-column="47" selection-end-line="38" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_slide.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/core-2/_slide.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="58" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scripts.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="scripts.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/core/scripts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="268" column="101" selection-start-line="268" selection-start-column="101" selection-end-line="268" selection-end-column="101" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gulpfile.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gulpfile.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="640">
-              <caret line="140" column="15" selection-start-line="140" selection-start-column="15" selection-end-line="140" selection-end-column="15" />
-              <folding />
+            <state relative-caret-position="314">
+              <caret line="323" column="0" selection-start-line="323" selection-start-column="0" selection-end-line="323" selection-end-column="0" />
+              <folding>
+                <element signature="e#4259#4758#0" expanded="false" />
+                <element signature="e#4822#8158#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -103,8 +77,8 @@
         <option value="$PROJECT_DIR$/src/core-2/_slide.scss" />
         <option value="$PROJECT_DIR$/src/core-2/_core.scss" />
         <option value="$PROJECT_DIR$/gulpfile.js" />
-        <option value="$PROJECT_DIR$/src/core/scripts.js" />
         <option value="$PROJECT_DIR$/src/core-2/index.twig" />
+        <option value="$PROJECT_DIR$/src/core/scripts.js" />
       </list>
     </option>
   </component>
@@ -327,12 +301,12 @@
       <workItem from="1473862591927" duration="20163000" />
       <workItem from="1473930477305" duration="19204000" />
       <workItem from="1473963109709" duration="8245000" />
-      <workItem from="1474122431688" duration="1712000" />
+      <workItem from="1474122431688" duration="4506000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81257000" />
+    <option name="totallyTimeSpent" value="84051000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1924" height="1047" extended-state="0" />
@@ -395,7 +369,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2200">
           <caret line="110" column="22" selection-start-line="110" selection-start-column="22" selection-end-line="110" selection-end-column="22" />
-          <folding />
+          <folding>
+            <element signature="e#4259#4758#0" expanded="false" />
+            <element signature="e#4822#8158#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -427,7 +404,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#4259#4758#0" expanded="false" />
+            <element signature="e#4822#8158#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -460,7 +440,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#4259#4758#0" expanded="false" />
+            <element signature="e#4822#8158#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -493,7 +476,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#4259#4758#0" expanded="false" />
+            <element signature="e#4822#8158#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -501,7 +487,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#4259#4758#0" expanded="false" />
+            <element signature="e#4822#8158#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -509,7 +498,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#4259#4758#0" expanded="false" />
+            <element signature="e#4822#8158#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -637,19 +629,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/scripts.js">
+    <entry file="file://$PROJECT_DIR$/src/core-2/index.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="268" column="101" selection-start-line="268" selection-start-column="101" selection-end-line="268" selection-end-column="101" />
+        <state relative-caret-position="680">
+          <caret line="49" column="43" selection-start-line="49" selection-start-column="43" selection-end-line="49" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/core-2/index.twig">
+    <entry file="file://$PROJECT_DIR$/src/core/scripts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
-          <folding />
+        <state relative-caret-position="314">
+          <caret line="323" column="0" selection-start-line="323" selection-start-column="0" selection-end-line="323" selection-end-column="0" />
+          <folding>
+            <element signature="e#4259#4758#0" expanded="false" />
+            <element signature="e#4822#8158#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
