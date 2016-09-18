@@ -10,6 +10,7 @@
         dots = Rider.$$(dots);
 
         Rider.on(dots, 'click', function(event){
+            event.preventDefault();
             rider.slide(Rider.index(event.target) + 1);
         });
 

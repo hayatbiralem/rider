@@ -1,0 +1,153 @@
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html * {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+.tabs {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.tab {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 10px 20px;
+  border: 1px solid #fff;
+  margin: 5px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.tab--current {
+  color: #333;
+  background-color: #fff;
+}
+
+.tab-contents-wrapper {
+  border: 1px solid #fff;
+  margin: 5px;
+}
+
+.tab-contents {
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-content {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #4b4872;
+}
+
+.tab-content--1 {
+  color: #fff;
+  background-color: red;
+}
+
+.tab-content--2 {
+  color: #fff;
+  background-color: blue;
+}
+
+.tab-content--3 {
+  color: #333;
+  background-color: yellow;
+}
+
+.tab-content--4 {
+  color: #333;
+  background-color: tomato;
+}
+
+.tab-content--show {
+  visibility: visible;
+  position: relative;
+}
+
+.tab-contents--animation--fade .tab-content--hide {
+  visibility: visible;
+  -webkit-animation: fadeOut 450ms cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  -moz-animation: fadeOut 450ms cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  -o-animation: fadeOut 450ms cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  animation: fadeOut 450ms cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+}
+
+.tab-contents--animation--fade .tab-content--hide {
+  z-index: 2;
+}
+
+.tab-contents--animation--fade .tab-content--show {
+  z-index: 1;
+}
+
+@-webkit-keyframes fadeOut {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@-moz-keyframes fadeOut {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@-o-keyframes fadeOut {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+body {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 100px;
+  background: #4b4872;
+}
+
+h3,
+p {
+  margin: 0;
+}

@@ -1,0 +1,18 @@
+.tab-contents--animation--fade {
+  .tab-content {
+    &--hide {
+      visibility: visible;
+      animation: fadeOut 450ms cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+    }
+
+    &--hide { z-index: 2; }
+    &--show { z-index: 1; }
+  }
+}
+
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

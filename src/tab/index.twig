@@ -1,0 +1,49 @@
+{% extends "../common/layout.twig" %}
+{% import "../common/macro.twig" as macro %}
+
+{% block styles %}
+    <link rel="stylesheet" href="tab.css">
+{% endblock %}
+
+{% block scripts %}
+    <script src="core.js"></script>
+    <script src="rider-arrows.js"></script>
+    <script src="rider-dots.js"></script>
+    <script>
+        var tabs = new Rider(
+                '.tab-contents',
+                {
+                    blockClass: 'tab-contents',
+                    itemClass: 'tab-content',
+                    visibleCount: 1,
+                    plugins: {
+                        setDots: ['.tab', 'tab--current']
+                    }
+                }
+        );
+
+        tabs.on('render', function(event){
+            console.log(event);
+        });
+
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="tabs">
+        {% for i in 1..5 %}
+            <a class="tab {{ loop.first ? 'tab--current' : '' }}" href="#tab-{{ i }}">Tab {{ i }}</a>
+        {% endfor %}
+    </div>
+
+    <div class="tab-contents-wrapper">
+        <div class="tab-contents tab-contents--animation--fade">
+            {% for i in 1..5 %}
+                <div class="tab-content tab-content--{{ i }}">
+                    <h2>Tab {{ i }}</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum debitis eaque, esse illum molestiae nostrum obcaecati optio quod voluptas. Fugit.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
