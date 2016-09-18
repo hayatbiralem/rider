@@ -2,14 +2,18 @@
 (function(global){
     'use strict';
 
+    var elementPool = [];
+    var preparedEventCallbackPool = {
+        args: [],
+        cbs: []
+    };
     var Rider = function(element, options){
         if(!element) Rider.error('Missing selector.');
 
-        for (var i = 0; i < elementPool.length; i++) {
-            if (elementPool[i] === element) {
-                Rider.error('An instance of Rider with this selector already exists.');
-            }
-        }
+        if(Rider.isString(element)) element = Rider.$(element);
+        if(!element) Rider.error('Element not found.');
+
+        if(elementPool.indexOf(element) !== -1) Rider.error('An instance of Rider with this selector already exists.');
         elementPool.push(element);
 
         this.options = Rider.extend({
@@ -23,7 +27,7 @@
         this.events = {};
 
         this.element = element;
-        this.items = Rider.$('.' + this.options.itemClass, element);
+        this.items = Rider.$$('.' + this.options.itemClass, element);
         this.items.forEach(function(item, index){
             item.setAttribute('data-rider-index', index.toString());
         });
@@ -38,29 +42,38 @@
         this.render(null, null, 'init');
         Rider.on(global, 'RiderResize', this.resize.bind(this));
         Rider.on(this.element, this.animationEndEvent, this.animationEnd.bind(this));
+
+        // init plugins
+        this.plugins = {};
+        this.initPlugins();
     };
 
     Rider.error = function(error){
         throw new Error(error);
     };
 
-    Rider.on = function (element, eventName, callback) {
-        if(element) element.addEventListener(eventName, callback, false);
+    Rider.on = function (selector, eventName, callback) {
+        Rider.each(selector, function(el, index){
+            el.addEventListener(eventName, callback, false);
+        });
     };
 
-    Rider.off = function (element, eventName, callback) {
-        if(element) element.removeEventListener(eventName, callback, false);
+    Rider.off = function (selector, eventName, callback) {
+        Rider.each(selector, function(el, index){
+            el.removeEventListener(eventName, callback, false);
+        });
     };
 
-
-    Rider.addClass = function(element, className){
-        if (!element) { return; }
-        element.className = (element.className + ' ' + className).trim();
+    Rider.addClass = function(selector, className){
+        Rider.each(selector, function(el){
+            el.className = (el.className + ' ' + className).trim();
+        });
     };
 
-    Rider.removeClass = function(element, className){
-        if (!element) { return; }
-        element.className = element.className.replace(className, '').replace(/\s\s+/g, ' ').trim();
+    Rider.removeClass = function(selector, className){
+        Rider.each(selector, function(el){
+            el.className = el.className.replace(className, '').replace(/\s\s+/g, ' ').trim();
+        });
     };
 
     Rider.hasClass = function(element, className){
@@ -69,6 +82,14 @@
             return element.classList.contains(className);
         }
         return new RegExp('(^| )' + className + '( |$)', 'gi').test(element.className);
+    };
+
+    Rider.isString = function (any) {
+        return typeof any === 'string';
+    };
+
+    Rider.isArray = function (any) {
+        return Array.isArray(any);
     };
 
     Rider.isObject = function (any) {
@@ -80,9 +101,9 @@
     };
 
     Rider.template =  function (template, info) {
-        if (typeof template === "string") {
+        if (Rider.isString(template)) {
             var result = template;
-            if(this.isObject(info)) {
+            if(Rider.isObject(info)) {
                 for (var key in info) {
                     var val = info[key];
                     result = result.split('{' + key + '}').join(val === null ? '' : val);
@@ -110,7 +131,28 @@
     };
 
     Rider.$ = function(selector, parent){
-        return Array.prototype.slice.call((parent || document).querySelectorAll(selector));
+        if(!selector) return null;
+        if(Rider.isString(selector)) return (parent || document).querySelector(selector);
+        return selector;
+    };
+
+    Rider.$$ = function(selector, parent){
+        if(!selector) return [];
+        if(Rider.isString(selector)) return Array.prototype.slice.call((parent || document).querySelectorAll(selector));
+        return Rider.isArray(selector) ? selector : [selector];
+    };
+
+    Rider.each = function (selector, callback) {
+        if(!selector || !Rider.isFunction(callback)) return false;
+        Rider.$$(selector).forEach(function(el, index){
+            callback.apply(el, [el, index]);
+        });
+    };
+
+    Rider.index = function (node, parent) {
+        if(!node) return null;
+        if(Rider.isString(node)) node = (parent || document).querySelector(node);
+        return node ? Array.prototype.indexOf.call(node.parentNode.children, node) : null;
     };
 
     Rider.arrayDiff = function(a, b){
@@ -166,7 +208,13 @@
     // init RiderResize event
     Rider.throttle("resize", "RiderResize");
 
-    var elementPool = [];
+    // plugins
+    Rider.plugins = [];
+    Rider.addPlugin = function (key, Plugin) {
+        Plugin.key = key;
+        Rider[key] = Plugin;
+        Rider.plugins.push(Rider[key]);
+    };
 
     Rider.prototype = {
         resize: function(e) {
@@ -186,6 +234,10 @@
             if(nextItems) this.show(nextItems, direction);
 
             this.calculateValues();
+            this.outItems = outItems;
+            this.nextItems = nextItems;
+            this.direction = direction;
+
             Rider.removeClass(this.element, this.elementClassRemovePattern);
             Rider.addClass(this.element, Rider.format(this.elementClassTemplate, {
                 total: this.pageCount,
@@ -287,7 +339,7 @@
         calculateValues: function () {
             this.itemCount = this.items.length;
             this.visibleCount = this.getVisibleCount();
-            this.visibleItems = Rider.$( Rider.format('.{0}--show', this.options.itemClass) );
+            this.visibleItems = Rider.$$( Rider.format('.{0}--show', this.options.itemClass) );
             if(this.visibleItems.length === 0) {
                 this.visibleItems = this.items.slice(0, this.visibleCount);
                 this.show(this.visibleItems, 'next');
@@ -359,19 +411,26 @@
 
         prev: function(){
             return this.slide('prev');
+        },
+
+        initPlugins: function(){
+            var that = this;
+            Rider.each(Rider.plugins, function(plugin){
+                if(!Rider.isFunction(plugin) || !plugin.key) return;
+
+                // Set plugin for using via Rider instance
+                that.plugins[plugin.key] = function(){
+                    plugin.apply(that, [that].concat(Array.prototype.slice.call(arguments)));
+                };
+
+                // Run plugin via options if exists
+                if(Rider.isObject(that.options.plugins) && Rider.isArray(that.options.plugins[plugin.key])) {
+                    that.plugins[plugin.key].apply(that, that.options.plugins[plugin.key]);
+                }
+            });
         }
     };
 
-    // Exports to multiple environments
-    if(typeof define === 'function' && define.amd){
-        // AMD
-        define(function () { return Rider; });
-    } else if (typeof module !== 'undefined' && module.exports){
-        // Node
-        module.exports = Rider;
-    } else {
-        // Browser
-        global.Rider = Rider;
-    }
+    global.Rider = Rider;
 
 })(this);
