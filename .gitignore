@@ -40,4 +40,4 @@ jspm_packages
 Thumbs.db
 
 #ignore ide files
-.idea
+.idea/
