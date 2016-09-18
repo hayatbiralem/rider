@@ -38,3 +38,6 @@ jspm_packages
 
 #ignore thumbnails created by windows
 Thumbs.db
+
+#ignore ide files
+.idea
