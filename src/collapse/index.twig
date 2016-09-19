@@ -1,0 +1,37 @@
+{% extends "../common/layout.twig" %}
+{% import "../common/macro.twig" as macro %}
+
+{% block styles %}
+    <link rel="stylesheet" href="collapse.css">
+{% endblock %}
+
+{% block scripts %}
+    <script src="core.js"></script>
+    <script>
+        var collapse = Rider.$('.collapse');
+        collapse.style.height = '0px';
+        collapse.addEventListener('animationend', function(event){
+            console.log(event);
+        });
+        Rider.on('.trigger', 'click', function(){
+            if(Rider.hasClass(collapse, 'in')) {
+                Rider.removeClass(collapse, 'in');
+                collapse.style.height = '0px';
+            } else {
+                Rider.addClass(collapse, 'in');
+                collapse.style.height = collapse.scrollHeight + 'px';
+            }
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper">
+        <div class="trigger">Click me!</div>
+        <div class="collapse">
+            <div class="inner">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates voluptas facilis culpa recusandae placeat dolore blanditiis optio est alias veniam perspiciatis ad ducimus, enim quidem obcaecati modi repellendus consequuntur provident ut rerum quo doloribus repellat ex. Voluptatem expedita voluptatibus impedit ex, accusantium repellendus modi debitis asperiores unde aspernatur id magni fugiat provident vel consequuntur tempore itaque iure! Quidem unde inventore, quam deserunt at sed corrupti ipsa et facilis ab repellendus soluta sapiente laboriosam accusamus similique, blanditiis porro dolores libero pariatur repudiandae. Sequi commodi, aperiam eveniet quibusdam explicabo, tempora ab perspiciatis? Aliquam ea, amet cupiditate illo mollitia earum iusto autem quas voluptate! Dolorum magnam, deserunt sunt rem consequuntur sint repellat eum ab, ex eveniet suscipit architecto nesciunt sed distinctio saepe, explicabo laborum aspernatur incidunt. Quis at, consectetur ex quae iusto accusantium eum officia pariatur quos animi, voluptatem libero error vero alias perspiciatis debitis. Explicabo laboriosam est, facere enim officia culpa numquam.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

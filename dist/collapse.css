@@ -1,0 +1,31 @@
+.collapse {
+  overflow: hidden;
+  height: 0;
+  -webkit-transition: all 600ms ease-in-out;
+  -o-transition: all 600ms ease-in-out;
+  -moz-transition: all 600ms ease-in-out;
+  transition: all 600ms ease-in-out;
+}
+
+.collapse.in {
+  height: auto;
+}
+
+.wrapper {
+  background-color: #f5f5f5;
+  border: 1px solid #333;
+}
+
+.trigger {
+  padding: 10px 20px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.inner {
+  padding: 10px 20px;
+  border-top: 1px solid #333;
+}
