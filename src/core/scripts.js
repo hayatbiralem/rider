@@ -12,13 +12,7 @@
         if(elementPool.indexOf(element) !== -1) Rider.error('An instance of Rider with this selector already exists.');
         elementPool.push(element);
 
-        this.options = Rider.extend({
-            blockClass: 'rider',
-            itemClass: 'rider__item',
-            visibleCount: 1,
-            page: 1,
-            reverseHideDirection: false
-        }, options || {});
+        this.options = Rider.extend(Rider.defaults, options || {});
 
         this.events = {
             start: null,
@@ -50,6 +44,15 @@
         // init plugins
         this.plugins = {};
         this.initPlugins();
+    };
+
+    // defaults
+    Rider.defaults = {
+        blockClass: 'rider',
+        itemClass: 'rider__item',
+        visibleCount: 1,
+        page: 1,
+        reverseHideDirection: false
     };
 
     // prototype
@@ -479,6 +482,25 @@
 
     // init RiderResize event
     Rider.throttle("resize", "RiderResize");
+
+    // jQuery plugin definition
+    if(global.jQuery){
+        var Plugin = function (option) {
+            return this.each(function () {
+                var $this   = $(this);
+                var data    = $this.data('rider');
+                var options = $.extend({}, Rider.defaults, $this.data(), typeof option == 'object' && option);
+                var action  = typeof option == 'string' ? option : options.slide;
+
+                if (!data) $this.data('rider', (data = new Rider(this, options)));
+                if (typeof option == 'number') data.slide(option);
+                else if (action) data[action]();
+            });
+        };
+
+        $.fn.rider             = Plugin;
+        $.fn.rider.Constructor = Rider;
+    }
 
     // done
     global.Rider = Rider;

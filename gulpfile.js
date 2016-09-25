@@ -20,7 +20,7 @@ var json = {
         return JSON.parse(fs.readFileSync('src/json/db.json'));
     }
 };
-var modules = ['core', 'carousel', 'tab', 'collapse', 'rider-arrows', 'rider-dots'];
+var modules = ['core', 'carousel', 'carousel-jquery', 'tab', 'collapse', 'rider-arrows', 'rider-dots'];
 
 // clean
 gulp.task('clean', function () {
