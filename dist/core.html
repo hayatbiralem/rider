@@ -7,9 +7,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Rider</title>
-
     <link rel="stylesheet" href="core.css">
-
 </head>
 
 <body>
@@ -20,27 +18,16 @@
         <div class="content">
 
             <div class="items">
-
                 <div class="item item--show item--show--1">1</div>
-
                 <div class="item item--show item--show--2">2</div>
-
                 <div class="item item--show item--show--3">3</div>
-
                 <div class="item item--show item--show--4">4</div>
-
                 <div class="item item--show item--show--5">5</div>
-
                 <div class="item ">6</div>
-
                 <div class="item ">7</div>
-
                 <div class="item ">8</div>
-
                 <div class="item ">9</div>
-
                 <div class="item ">10</div>
-
             </div>
 
             <div class="controls">
@@ -62,7 +49,9 @@
     <script src="core.js"></script>
     <script>
         var rider = new Rider(
-            document.querySelector('.items'), {
+            '.items', {
+                itemClass: 'item',
+                blockClass: 'items',
                 visibleCount: function() {
                     // return 1;
                     var bodyWidth = document.body.offsetWidth;
@@ -91,7 +80,6 @@
             });
         });
     </script>
-
 </body>
 
 </html>

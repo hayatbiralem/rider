@@ -9,8 +9,10 @@
     <script src="core.js"></script>
     <script>
         var rider = new Rider(
-                document.querySelector('.items'),
+                '.items',
                 {
+                    itemClass: 'item',
+                    blockClass: 'items',
                     visibleCount: function(){
                         // return 1;
                         var bodyWidth = document.body.offsetWidth;
